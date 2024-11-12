@@ -51,3 +51,16 @@ export const createJob = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getJobById = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    const job = await Job.findById(jobId);
+    if (job === null) {
+      throw new Error("Job not found");
+    }
+    return res.status(200).json(job);
+  } catch (error) {
+    console.log(error);
+  }
+};
