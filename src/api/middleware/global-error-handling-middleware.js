@@ -6,6 +6,9 @@ const globalErrorHandlingMiddleware = (error, req, res, next) => {
   if (error.name === "NotFoundError") {
     return res.status(404).json({ message: error.message });
   }
+  if (error.message.includes("Unauthenticated")) {
+    return res.status(401).json({ message: "Unauthenticated" });
+  }
   return res.status(500).json({ message: "Internal Server Error" });
 };
 

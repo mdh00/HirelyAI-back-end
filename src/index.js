@@ -4,10 +4,12 @@ import jobApplicationsRouter from "./api/jobApplications.js";
 import "dotenv/config"; 
 import { connectDB } from "./persistance/db.js";
 import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware.js";
+import cors from "cors";
 
 const app = Express();
 
 app.use(Express.json());
+app.use(cors({origin: "http://localhost:5173"})); 
 
 connectDB()
 
