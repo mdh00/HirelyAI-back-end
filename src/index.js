@@ -9,7 +9,9 @@ import cors from "cors";
 const app = Express();
 
 app.use(Express.json());
-app.use(cors({origin: "https://hirelyai-frontend.netlify.app", })); 
+app.use(cors({
+    origin: ["https://hirelyai-frontend.netlify.app", "http://localhost:5173"]
+  }));
 
 connectDB()
 
