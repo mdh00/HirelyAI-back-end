@@ -10,6 +10,10 @@ const jobsSchema = new Schema({
         type: String,
         default: "This job doesn't have a description"
     },
+    type: {
+        type: String,
+        required: true,
+      },
     location: {
         type: String,
         required: true,
