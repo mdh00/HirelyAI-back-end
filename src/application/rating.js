@@ -1,7 +1,9 @@
 import OpenAI from "openai";
 import JobApplication from "../persistance/Entities/jobApplications.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const client = new OpenAI({ apiKey: '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' });
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function generateRating(jobApplicationId) {
     try {
@@ -30,7 +32,7 @@ export async function generateRating(jobApplicationId) {
 
 
         await JobApplication.findOneAndUpdate({ _id: jobApplicationId }, { rating: response.rate })
-        
+
     }
     catch (err) {
         console.log(err);
