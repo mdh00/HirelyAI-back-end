@@ -56,9 +56,13 @@ export const createJob = async (req, res, next) => {
     if(!job.success){
       throw new ValidationError(job.error);
     }
-    await Job.create(job.data);
-    return res.status(201).send();
+    const createJob = await Job.create(job.data);
+    return res.status(201).json({
+      message: "Job created successfully",
+      job: createJob,
+    });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
